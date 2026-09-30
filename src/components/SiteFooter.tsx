@@ -20,7 +20,7 @@ export function SiteFooter() {
           <a href="#realizacje">Galeria</a>
           <a href="#proces">Jak to działa?</a>
           <Link to="/oferta">Cennik</Link>
-          <a href="#">FAQ</a>
+          <Link to="/faq">FAQ</Link>
         </nav>
         <div className="flex flex-col gap-3 md:justify-self-end">
           <a href="mailto:prezent3d@gmail.com" className="flex items-center gap-2 text-[10px] font-semibold">
