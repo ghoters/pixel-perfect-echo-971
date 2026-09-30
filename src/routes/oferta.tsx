@@ -255,6 +255,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
       aria-pressed={selected}
       onClick={onClick}
       onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onClick(); } }}
+      className={`group relative flex min-h-[144px] min-w-0 w-full flex-row items-stretch justify-start ${tightGap ? "gap-3" : "gap-4"} overflow-hidden whitespace-normal rounded-md border p-3.5 text-left text-sm font-medium shadow-none outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring ${locked ? "cursor-default" : "cursor-pointer"} ${hoverable ? "hover:border-primary/40 hover:bg-accent hover:text-accent-foreground" : ""} ${selected ? "border-primary bg-card ring-1 ring-primary" : stepActive ? "border-border bg-card" : "border-border/60 bg-muted/50 text-muted-foreground"}`}
     >
       {fullBackground && image && (
         <span
