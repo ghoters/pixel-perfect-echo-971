@@ -1,4 +1,4 @@
 # Zadania
 - [x] Przeanalizować repozytorium i przenieść strony, style, komponenty oraz fotografie.
-- [ ] Sprawdzić wizualnie wszystkie strony na desktopie, tablecie i telefonie.
-- [ ] Zweryfikować przejście od konfiguracji do potwierdzenia.
+- [x] Sprawdzić wizualnie wszystkie strony na desktopie, tablecie i telefonie.
+- [x] Zweryfikować przejście od konfiguracji do potwierdzenia.
