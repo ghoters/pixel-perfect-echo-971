@@ -945,7 +945,7 @@ function OfferPage() {
                             scheduleGraverReset();
                           }}
                           placeholder="Wpisz grawer, np. Na urodziny"
-                          className={`h-9 w-full rounded-md border border-input bg-card pl-3 text-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${graverText.length > 0 ? "pr-8" : "pr-3"}`}
+                          className={`h-9 w-full rounded-md border pl-3 text-xs outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring ${graverText.trim() ? "border-primary bg-primary/10 text-primary font-medium" : "border-input bg-card"} ${graverText.length > 0 ? "pr-8" : "pr-3"}`}
                         />
                         {graverText.length > 0 && (
                           <button
@@ -1072,7 +1072,7 @@ function OfferPage() {
               <SummaryRow icon={UsersRound} label="Liczba osób / zwierząt" items={subjectItems} removable={lastFilledStep === 0} price={subjectPrice > 0 ? subjectPrice : undefined} />
               <SummaryRow icon={Clock3} label="Rozmiar" value={selected.size?.title} price={selected.size ? sizePrice : undefined} removable={lastFilledStep === 1} onRemove={clearSize} />
               <SummaryRow icon={Palette} label="Wykończenie" value={finishLabel ?? selected.finish?.title} price={selected.finish?.price} removable={lastFilledStep === 2} onRemove={clearFinish} />
-              <SummaryRow icon={CircleCheck} label="Podstawka" value={base === "personalized" && graverCommitted && graverText.trim() ? `Personalizowana — ${graverText.trim()}` : selected.base?.title} price={selected.base?.price} removable={lastFilledStep === 3} onRemove={clearBase} />
+              <SummaryRow icon={CircleCheck} label="Podstawka" value={base === "personalized" && graverText.trim() ? `Personalizowana — ${graverText.trim()}` : selected.base?.title} price={selected.base?.price} removable={lastFilledStep === 3} onRemove={clearBase} />
               <SummaryRow icon={Gift} label="Dodatki" value={selected.pack?.title} price={selected.pack?.price} removable={lastFilledStep === 4} onRemove={clearPack} />
               <div className="mt-1 flex items-end justify-between bg-secondary/70 px-4 py-4">
                 <div><strong className="text-sm">Łączna cena</strong><p className="mt-1 text-[10px] text-muted-foreground">Cena może ulec zmianie po weryfikacji zdjęć.</p></div>
@@ -1085,7 +1085,7 @@ function OfferPage() {
               disabled={!photosReady || photoBusy || !activeSteps.every(Boolean)}
               className="mt-3 h-12 w-full text-sm"
               onClick={() => {
-                saveFigurineConfig({ subjects, personCount, animalCount, customText, customCommitted, size, finish, base, pack, photoCount, color, colorText, colorCommitted, graverText, graverCommitted });
+                saveFigurineConfig({ subjects, personCount, animalCount, customText, customCommitted, size, finish, base, pack, photoCount, color, colorText, colorCommitted, graverText, graverCommitted: graverCommitted || !!graverText.trim() });
                 void navigate({ to: "/zamowienie" });
               }}
             >Przejdź dalej <ArrowRight /></Button>
