@@ -680,7 +680,7 @@ function OfferPage() {
           <div className="overflow-hidden rounded-md border border-border bg-card">
             <section className="p-5">
               <StepHeading number={1} title="Kogo ma przedstawiać figurka?" subtitle="Wybierz, kto znajdzie się na figurce." active={activeSteps[0]} />
-              <div className="grid gap-3.5 md:grid-cols-3">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-3.5 md:grid-cols-3">
                 {subjectOptions.map((item) => (
                   <ChoiceCard
                     key={item.id}
