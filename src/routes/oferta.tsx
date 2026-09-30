@@ -1016,7 +1016,7 @@ function OfferPage() {
                 </div>
               </div>
               {photoError && <p role="alert" className="mt-2 text-xs text-destructive">{photoError}</p>}
-              {photos.length > 0 && <div className="mt-3"><p className="mb-2 text-xs font-semibold">Dodane zdjęcia ({photoCount})</p><OrderPhotoGallery files={photos} onRemove={(index) => { if (!photoBusy) void updatePhotos(photos.filter((_, current) => current !== index)); }} /></div>}
+              {photos.length > 0 && <div className="pointer-events-auto mt-3"><p className="mb-2 text-xs font-semibold">Dodane zdjęcia ({photoCount})</p><OrderPhotoGallery files={photos} onRemove={(index) => { if (!photoBusy) void updatePhotos(photos.filter((_, current) => current !== index)); }} /></div>}
             </section>
           </div>
 
