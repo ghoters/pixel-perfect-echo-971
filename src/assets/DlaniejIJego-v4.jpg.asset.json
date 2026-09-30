@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "19f9f812-1ca1-45ac-b1e1-bc24683635e7",
-  "project_id": "3450d64e-d31d-4c8a-b718-ab77617c1e30",
-  "url": "/__l5e/assets-v1/19f9f812-1ca1-45ac-b1e1-bc24683635e7/DlaniejIJego-v4.jpg",
-  "r2_key": "a/v1/3450d64e-d31d-4c8a-b718-ab77617c1e30/19f9f812-1ca1-45ac-b1e1-bc24683635e7/DlaniejIJego-v4.jpg",
-  "original_filename": "DlaniejIJego-v4.jpg",
-  "size": 122218,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-30T13:29:07Z"
+  "created_at": "2026-09-30T13:29:07Z",
+  "original_filename": "DlaniejIJego-v4.jpg",
+  "project_id": "40afd10d-d060-4e7d-85c4-f21ddb5dfbd4",
+  "r2_key": "a/v1/40afd10d-d060-4e7d-85c4-f21ddb5dfbd4/19f9f812-1ca1-45ac-b1e1-bc24683635e7/DlaniejIJego-v4.jpg",
+  "size": 122218,
+  "url": "/__l5e/assets-v1/19f9f812-1ca1-45ac-b1e1-bc24683635e7/DlaniejIJego-v4.jpg",
+  "version": 1
 }
