@@ -39,9 +39,7 @@ export function SiteHeader({ active = "", variant = "full" }: { active?: "home" 
           <Search className="size-4" aria-hidden="true" />
           <UserRound className="size-4" aria-hidden="true" />
           <ShoppingCart className="size-4" aria-hidden="true" />
-          {active !== "offer" && (
-            <Button variant="hero" size="default" asChild><Link to="/oferta">Stwórz swoją figurkę <ArrowRight /></Link></Button>
-          )}
+          <Button variant="hero" size="default" asChild><Link to="/oferta">Stwórz swoją figurkę <ArrowRight /></Link></Button>
         </div>
         <Menu className="size-6 lg:hidden" aria-label="Otwórz menu" />
       </div>
