@@ -277,7 +277,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
         <p className={`${matchBadgePadding ? "mt-[14px]" : "mt-2"} text-xs font-normal leading-5 text-muted-foreground`}>{text}</p>
         {textInput ? (
           fullBackground ? (
-            <div className="mt-auto flex w-full flex-col items-start">
+             <div className="mt-auto flex w-[153px] max-w-full flex-col items-start">
               {textInputPrice}
                {textInputTrigger}
                {textInputEditor}
