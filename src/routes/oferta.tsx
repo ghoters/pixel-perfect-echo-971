@@ -172,6 +172,9 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
     }
   };
   const fullBackground = imageFull && image;
+  // Full-background cards only need the wide bottom row while the user is editing.
+  // The idle trigger and committed value stay aligned with the text column.
+  const absEditor = Boolean(textInput && fullBackground && selected && !textInput.committed);
   const priceLines = (priceLabel ?? (price ? `+ ${price} zł` : "Cena podstawowa")).split("\n");
   const textInputPrice = textInput ? (
     <span className={`pt-3 text-xs font-bold ${priceViolet ? "text-primary" : ""} ${fullBackground ? "[&>span]:whitespace-normal" : ""}`}>
@@ -184,14 +187,14 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
     <button
       type="button"
       onClick={(event) => { event.stopPropagation(); onClick(); }}
-      className={`${fullBackground ? "" : "mt-3"} inline-flex h-7 w-fit items-center justify-center gap-1.5 self-start rounded-full border border-primary/30 bg-primary/10 px-[6px] text-[11px] font-semibold text-primary transition-colors hover:bg-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
+      className="mt-3 inline-flex h-7 w-fit items-center justify-center gap-1.5 self-start rounded-full border border-primary/30 bg-primary/10 px-[6px] text-[11px] font-semibold text-primary transition-colors hover:bg-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <Plus className="size-3.5 shrink-0" />
       <span className="whitespace-nowrap text-center leading-none">{textInput.buttonLabel}</span>
     </button>
   ) : null;
   const textInputEditor = textInput && !textInput.committed && selected ? (
-    <div className={`${fullBackground ? "absolute inset-0" : "mt-3"} flex h-7 w-full min-w-0 gap-1`}>
+    <div className="mt-3 flex h-7 w-full gap-1">
       <input
         ref={inputRef}
         type="text"
@@ -240,7 +243,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
     <button
       type="button"
       onClick={(event) => { event.stopPropagation(); textInput.onEdit(); }}
-      className={`${fullBackground ? "" : "mt-3"} flex h-7 w-[179px] items-center justify-between gap-1.5 rounded border border-primary/40 bg-primary/5 px-2 text-[11px] font-semibold text-foreground transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
+      className="mt-3 flex h-7 w-[179px] items-center justify-between gap-1.5 rounded border border-primary/40 bg-primary/5 px-2 text-[11px] font-semibold text-foreground transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <span className="truncate text-left">{textInput.value}</span>
       <Check className="size-3.5 shrink-0 text-primary" />
@@ -255,7 +258,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
       aria-pressed={selected}
       onClick={onClick}
       onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onClick(); } }}
-      className={`group relative flex min-h-[144px] min-w-0 w-full flex-row items-stretch justify-start ${tightGap ? "gap-3" : "gap-4"} overflow-hidden whitespace-normal rounded-md border p-3.5 text-left text-sm font-medium shadow-none outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring ${locked ? "cursor-default" : "cursor-pointer"} ${hoverable ? "hover:border-primary/40 hover:bg-accent hover:text-accent-foreground" : ""} ${selected ? "border-primary bg-card ring-1 ring-primary" : stepActive ? "border-border bg-card" : "border-border/60 bg-muted/50 text-muted-foreground"}`}
+      className={`group relative flex min-h-[144px] w-full flex-row items-stretch justify-start ${tightGap ? "gap-3" : "gap-4"} overflow-hidden whitespace-normal rounded-md border p-3.5 text-left text-sm font-medium shadow-none outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring ${locked ? "cursor-default" : "cursor-pointer"} ${hoverable ? "hover:border-primary/40 hover:bg-accent hover:text-accent-foreground" : ""} ${selected ? "border-primary bg-card ring-1 ring-primary" : stepActive ? "border-border bg-card" : "border-border/60 bg-muted/50 text-muted-foreground"}`}
     >
       {fullBackground && image && (
         <span
@@ -272,18 +275,15 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
       )}
       {recommended && <RecommendedBadge className={recommendedClasses} />}
       {imageSide === "left" && slot}
-      <div className={`relative flex min-w-0 flex-1 flex-col items-start ${imageContain ? "max-w-[76%] pr-0" : priceCentered ? "pr-0" : "pr-5"} ${recommended && imageSide === "right" ? "pb-1 pt-[10px]" : "py-1"}`}>
+      <div className={`relative flex min-w-0 flex-1 flex-col items-start ${imageContain ? "max-w-[76%] pr-0" : priceCentered ? "pr-0" : "pr-5"} ${absEditor ? (recommended && imageSide === "right" ? "pt-[10px] pb-[38px]" : "pt-1 pb-[38px]") : recommended && imageSide === "right" ? "pb-1 pt-[10px]" : "py-1"}`}>
         <div className="flex items-start gap-2 text-sm font-extrabold leading-tight">{Icon && <Icon className="size-4 shrink-0 text-primary" />}<span className={titleNowrap ? "whitespace-nowrap" : "whitespace-pre-line"}>{title}</span></div>
         <p className={`${matchBadgePadding ? "mt-[14px]" : "mt-2"} text-xs font-normal leading-5 text-muted-foreground`}>{text}</p>
         {textInput ? (
           fullBackground ? (
-             <div className="mt-auto flex w-full flex-col items-start">
+            <div className="mt-auto flex w-full flex-col items-start">
               {textInputPrice}
-               <div className="relative mt-3 h-7 w-[153px] max-w-full">
-                 {textInputTrigger}
-                 {textInputEditor}
-                 {textInputChip}
-               </div>
+              {!absEditor && textInputTrigger}
+              {!absEditor && textInputChip}
             </div>
           ) : (
             <div className="mt-auto flex w-full flex-col">
@@ -324,6 +324,9 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
         )}
       </div>
       {imageSide === "right" && slot}
+      {absEditor && (
+        <div className="absolute inset-x-3.5 bottom-3.5 z-10 flex flex-col">{textInputEditor}</div>
+      )}
       <span className={`absolute right-3 top-3 size-4 rounded-full border ${selected ? "border-primary bg-primary ring-2 ring-card" : "border-border bg-card"}`} />
     </div>
   );
@@ -673,7 +676,7 @@ function OfferPage() {
           ))}
         </div>
 
-        <div className="mt-5 grid min-w-0 grid-cols-[minmax(0,1fr)] items-start gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(380px,1fr)] 2xl:grid-cols-[300px_minmax(0,1.55fr)_minmax(380px,1fr)]">
+        <div className="mt-5 grid items-start gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(380px,1fr)] 2xl:grid-cols-[300px_minmax(0,1.55fr)_minmax(380px,1fr)]">
           <div className="hidden 2xl:block 2xl:self-stretch">
             <div className="sticky top-[113px] flex max-h-[calc(100vh-160px)] flex-col overflow-y-auto justify-start">
               <HelpRail />
@@ -682,7 +685,7 @@ function OfferPage() {
           <div className="overflow-hidden rounded-md border border-border bg-card">
             <section className="p-5">
               <StepHeading number={1} title="Kogo ma przedstawiać figurka?" subtitle="Wybierz, kto znajdzie się na figurce." active={activeSteps[0]} />
-              <div className="grid grid-cols-[minmax(0,1fr)] gap-3.5 md:grid-cols-3">
+              <div className="grid gap-3.5 md:grid-cols-3">
                 {subjectOptions.map((item) => (
                   <ChoiceCard
                     key={item.id}
