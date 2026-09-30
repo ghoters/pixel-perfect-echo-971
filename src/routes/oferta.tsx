@@ -673,7 +673,7 @@ function OfferPage() {
           ))}
         </div>
 
-        <div className="mt-5 grid items-start gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(380px,1fr)] 2xl:grid-cols-[300px_minmax(0,1.55fr)_minmax(380px,1fr)]">
+        <div className="mt-5 grid min-w-0 grid-cols-[minmax(0,1fr)] items-start gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(380px,1fr)] 2xl:grid-cols-[300px_minmax(0,1.55fr)_minmax(380px,1fr)]">
           <div className="hidden 2xl:block 2xl:self-stretch">
             <div className="sticky top-[113px] flex max-h-[calc(100vh-160px)] flex-col overflow-y-auto justify-start">
               <HelpRail />
