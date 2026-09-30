@@ -191,7 +191,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
     </button>
   ) : null;
   const textInputEditor = textInput && !textInput.committed && selected ? (
-    <div className="mt-3 flex h-7 w-full gap-1">
+    <div className="mt-3 flex h-7 w-full min-w-0 gap-1">
       <input
         ref={inputRef}
         type="text"
@@ -277,7 +277,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
         <p className={`${matchBadgePadding ? "mt-[14px]" : "mt-2"} text-xs font-normal leading-5 text-muted-foreground`}>{text}</p>
         {textInput ? (
           fullBackground ? (
-             <div className="mt-auto flex w-[153px] max-w-full flex-col items-start">
+             <div className="mt-auto flex w-[153px] max-w-full min-w-0 flex-col items-start">
               {textInputPrice}
                {textInputTrigger}
                {textInputEditor}
