@@ -98,20 +98,6 @@ function KontaktPage() {
         </div>
       </section>
 
-      <section className="bg-background py-10 md:py-14">
-        <div className="section-shell grid">
-          <div className="relative grid content-center overflow-hidden rounded-xl bg-secondary/60 px-6 py-9 text-center sm:px-12">
-            <img src={kontaktSzkic} alt="Szkic konceptu figurki" width={1024} height={1024} loading="lazy" className="pointer-events-none absolute -right-10 top-1/2 hidden w-[300px] -translate-y-1/2 opacity-60 md:block" />
-            <div className="relative mx-auto max-w-[380px]">
-              <span className="mx-auto grid size-12 place-items-center rounded-full bg-card text-primary shadow-sm"><MessageCircle className="size-6" /></span>
-              <h2 className="mt-4 text-[20px] font-extrabold text-foreground">Masz inny pomysł?</h2>
-              <p className="mt-3 text-[12px] leading-6 text-muted-foreground">Jeśli masz własny pomysł na figurkę, niestandardowy projekt lub potrzebujesz wyceny – napisz do nas. Chętnie pomożemy w realizacji Twojej wizji.</p>
-              <Button variant="hero" size="sm" asChild className="mt-5"><a href={`mailto:${CONTACT_EMAIL}`}>Skontaktuj się z nami <ArrowRight /></a></Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="border-y border-border bg-card">
         <div className="section-shell flex flex-wrap items-center justify-center gap-3 py-7">
           <CircleHelp className="size-5 text-primary" />
