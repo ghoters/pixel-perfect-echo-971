@@ -61,7 +61,7 @@ const categories: Category[] = [
       { question: "Czy mogę wybrać konkretną pozę?", answer: "Tak. Możesz wskazać pozę na przesłanym zdjęciu albo opisać ją w uwagach do zamówienia." },
       { question: "Czy mogę zmienić ubranie lub dodatki?", answer: "Tak. Możemy odwzorować ubranie ze zdjęcia lub przygotować inne na podstawie dodatkowych materiałów." },
       { question: "Jak wygląda proces akceptacji projektu?", answer: "Po przygotowaniu modelu 3D wysyłamy podgląd do akceptacji. Produkcja rozpoczyna się dopiero po Twoim zatwierdzeniu." },
-      { question: "Ile zdjęć jest potrzebnych do wykonania modelu?", answer: "Zwykle wystarczą 3–5 wyraźnych zdjęć. Im lepiej pokazują twarz, fryzurę i sylwetkę, tym dokładniej przygotujemy projekt." },
+      { question: "Ile zdjęć jest potrzebnych do wykonania modelu?", answer: "Wystarczy 1 wyraźne zdjęcie, ale zalecamy przesłanie kilku ujęć. Pozwoli nam to precyzyjnie uchwycić rysy twarzy, sylwetkę i charakterystyczne szczegóły." },
       { question: "Czy można zamówić kilka osób na jednym projekcie?", answer: "Tak. Liczbę postaci wybierzesz w konfiguratorze, a większą grupę możemy przygotować po indywidualnej wycenie." },
       { question: "Czy przed drukiem zobaczę projekt?", answer: "Tak. Zawsze otrzymasz cyfrowy podgląd modelu przed rozpoczęciem druku." },
       { question: "Czy mogę zgłosić poprawki do projektu?", answer: "Tak. Po otrzymaniu podglądu możesz przekazać uwagi, które omówimy przed ostateczną akceptacją." },
