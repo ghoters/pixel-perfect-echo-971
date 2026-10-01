@@ -6,7 +6,6 @@ import {
   CircleHelp,
   Lightbulb,
   Lock,
-  MessageCircle,
   MoveDownRight,
   Zap,
 } from "lucide-react";
@@ -14,7 +13,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
 import kontaktHero from "@/assets/kontakt-hero.jpg";
-import kontaktSzkic from "@/assets/kontakt-szkic.png";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
