@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
 import type { FormEvent } from "react";
 import { useState } from "react";
 import {
@@ -7,17 +6,13 @@ import {
   CircleHelp,
   Lightbulb,
   Lock,
-  Mail,
-  MapPin,
   MessageCircle,
   MoveDownRight,
-  Phone,
   Zap,
 } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import kontaktHero from "@/assets/kontakt-hero.jpg";
 import kontaktSzkic from "@/assets/kontakt-szkic.png";
 
@@ -39,13 +34,6 @@ const CONTACT_EMAIL = "prezent3d@gmail.com";
 
 const subjects = ["Pytanie o zamówienie", "Wycena projektu", "Poprawki do projektu", "Współpraca", "Inne"];
 
-const quickFaq = [
-  { question: "Jak długo trwa realizacja zamówienia?", answer: "Termin zależy od wariantu figurki i liczby poprawek. Dokładny przewidywany czas potwierdzimy po przyjęciu zamówienia. Zwykle na realizację potrzebujemy 7 dni." },
-  { question: "Czy mogę wprowadzić zmiany w projekcie?", answer: "Tak. Po otrzymaniu podglądu modelu 3D możesz przekazać uwagi, które omówimy przed ostateczną akceptacją projektu." },
-  { question: "Jak wygląda proces zamówienia?", answer: "Przejdź do konfiguratora, wybierz wariant figurki, rozmiar, wykończenie i dodatki. Następnie prześlij zdjęcia, uzupełnij dane i złóż zamówienie." },
-  { question: "Czy oferujecie faktury?", answer: "Tak. Dokument zakupu przekazujemy zgodnie z danymi podanymi podczas składania zamówienia." },
-  { question: "Jakie pliki graficzne są najlepsze do wykonania figurki?", answer: "Wystarczy 1 wyraźne zdjęcie, ale zalecamy przesłanie kilku ujęć. Pozwoli nam to precyzyjnie uchwycić rysy twarzy, sylwetkę i charakterystyczne szczegóły." },
-];
 
 const inputClass = "w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-[12px] text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
 
