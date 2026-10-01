@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as OfertaRouteImport } from './routes/oferta'
 import { Route as PlatnoscRouteImport } from './routes/platnosc'
 import { Route as PotwierdzenieRouteImport } from './routes/potwierdzenie'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OfertaRoute = OfertaRouteImport.update({
@@ -50,6 +56,7 @@ const ZamowienieRoute = ZamowienieRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
+  '/kontakt': typeof KontaktRoute
   '/oferta': typeof OfertaRoute
   '/platnosc': typeof PlatnoscRoute
   '/potwierdzenie': typeof PotwierdzenieRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
+  '/kontakt': typeof KontaktRoute
   '/oferta': typeof OfertaRoute
   '/platnosc': typeof PlatnoscRoute
   '/potwierdzenie': typeof PotwierdzenieRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
+  '/kontakt': typeof KontaktRoute
   '/oferta': typeof OfertaRoute
   '/platnosc': typeof PlatnoscRoute
   '/potwierdzenie': typeof PotwierdzenieRoute
@@ -75,13 +84,27 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/faq' | '/oferta' | '/platnosc' | '/potwierdzenie' | '/zamowienie'
+    | '/'
+    | '/faq'
+    | '/kontakt'
+    | '/oferta'
+    | '/platnosc'
+    | '/potwierdzenie'
+    | '/zamowienie'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/faq' | '/oferta' | '/platnosc' | '/potwierdzenie' | '/zamowienie'
+  to:
+    | '/'
+    | '/faq'
+    | '/kontakt'
+    | '/oferta'
+    | '/platnosc'
+    | '/potwierdzenie'
+    | '/zamowienie'
   id:
     | '__root__'
     | '/'
     | '/faq'
+    | '/kontakt'
     | '/oferta'
     | '/platnosc'
     | '/potwierdzenie'
@@ -91,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FaqRoute: typeof FaqRoute
+  KontaktRoute: typeof KontaktRoute
   OfertaRoute: typeof OfertaRoute
   PlatnoscRoute: typeof PlatnoscRoute
   PotwierdzenieRoute: typeof PotwierdzenieRoute
@@ -111,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/oferta': {
@@ -147,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FaqRoute: FaqRoute,
+  KontaktRoute: KontaktRoute,
   OfertaRoute: OfertaRoute,
   PlatnoscRoute: PlatnoscRoute,
   PotwierdzenieRoute: PotwierdzenieRoute,
