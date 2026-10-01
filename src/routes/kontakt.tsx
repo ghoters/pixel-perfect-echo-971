@@ -110,30 +110,6 @@ function KontaktPage() {
         </div>
       </section>
 
-      <section className="bg-card py-10 md:py-14">
-        <div className="section-shell">
-          <div className="rounded-xl bg-secondary/50 px-6 py-9 sm:px-12">
-            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Inne sposoby kontaktu</p>
-            <h2 className="mt-2 text-[24px] font-extrabold text-foreground sm:text-[28px]">Skontaktuj się z nami w inny sposób</h2>
-            <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {([
-                [Mail, "E-mail", <a key="mail" href={`mailto:${CONTACT_EMAIL}`} className="text-[13px] font-bold text-primary hover:underline">{CONTACT_EMAIL}</a>, "Odpowiadamy w ciągu 24 godzin."],
-                [Phone, "Telefon", <span key="tel" className="text-[13px] font-bold text-primary">+48 123 456 789</span>, "Pon. – Pt. 9:00 – 17:00"],
-                [MessageCircle, "Chat", <Link key="faq" to="/faq" className="text-[13px] font-bold text-primary hover:underline">Zobacz FAQ</Link>, "Najczęściej zadawane pytania znajdziesz w zakładce FAQ."],
-                [MapPin, "Adres", <span key="adr" className="text-[13px] font-bold text-primary">Obsługa zdalna</span>, "Obsługujemy zamówienia na terenie całej Polski."],
-              ] as const).map(([Icon, label, content, note]) => (
-                <div key={label}>
-                  <span className="grid size-11 place-items-center rounded-full bg-secondary text-primary"><Icon className="size-5" strokeWidth={2} /></span>
-                  <h3 className="mt-4 text-[14px] font-extrabold text-foreground">{label}</h3>
-                  <div className="mt-1.5">{content}</div>
-                  <p className="mt-1.5 text-[10px] leading-5 text-muted-foreground">{note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="bg-background py-10 md:py-14">
         <div className="section-shell grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="rounded-xl border border-border bg-card p-6 sm:p-9">
