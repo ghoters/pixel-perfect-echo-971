@@ -6,7 +6,6 @@ import {
   CircleHelp,
   Lightbulb,
   Lock,
-  MessageCircle,
   MoveDownRight,
   Zap,
 } from "lucide-react";
@@ -14,7 +13,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
 import kontaktHero from "@/assets/kontakt-hero.jpg";
-import kontaktSzkic from "@/assets/kontakt-szkic.png";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
@@ -94,20 +92,6 @@ function KontaktPage() {
             <img src={kontaktHero} alt="Personalizowana figurka 3D mężczyzny z psem" width={1024} height={1280} className="w-full rounded-xl object-cover" />
             <p className="absolute right-2 top-0 rotate-[6deg] text-[12px] font-bold italic text-primary">Twoje zdjęcie → nasza figurka</p>
             <MoveDownRight className="absolute left-6 top-1 size-6 rotate-[40deg] text-primary" strokeWidth={2} />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background py-10 md:py-14">
-        <div className="section-shell grid">
-          <div className="relative grid content-center overflow-hidden rounded-xl bg-secondary/60 px-6 py-9 text-center sm:px-12">
-            <img src={kontaktSzkic} alt="Szkic konceptu figurki" width={1024} height={1024} loading="lazy" className="pointer-events-none absolute -right-10 top-1/2 hidden w-[300px] -translate-y-1/2 opacity-60 md:block" />
-            <div className="relative mx-auto max-w-[380px]">
-              <span className="mx-auto grid size-12 place-items-center rounded-full bg-card text-primary shadow-sm"><MessageCircle className="size-6" /></span>
-              <h2 className="mt-4 text-[20px] font-extrabold text-foreground">Masz inny pomysł?</h2>
-              <p className="mt-3 text-[12px] leading-6 text-muted-foreground">Jeśli masz własny pomysł na figurkę, niestandardowy projekt lub potrzebujesz wyceny – napisz do nas. Chętnie pomożemy w realizacji Twojej wizji.</p>
-              <Button variant="hero" size="sm" asChild className="mt-5"><a href={`mailto:${CONTACT_EMAIL}`}>Skontaktuj się z nami <ArrowRight /></a></Button>
-            </div>
           </div>
         </div>
       </section>
