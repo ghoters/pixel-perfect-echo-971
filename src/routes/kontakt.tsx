@@ -63,7 +63,7 @@ function KontaktPage() {
       </section>
 
       <section className="flex flex-1 items-center bg-gradient-to-br from-brand-soft via-background to-background">
-        <div className="section-shell grid w-full items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.75fr)] lg:gap-10 lg:py-16">
+        <div className="section-shell grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.75fr)] lg:gap-10 lg:py-16">
           <div className="grid max-w-[430px] grid-cols-3 gap-5">
             {([
               [Zap, "Szybka odpowiedź", "Zazwyczaj w ciągu 24 godzin"],
