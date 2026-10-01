@@ -69,6 +69,8 @@ const progressSteps = ["Liczba osób / zwierząt", "Rozmiar", "Wykończenie", "P
 const BASE_PERSON_PRICE = 180;
 // Dopłata za każdą dodatkową osobę/zwierzę (niezależnie od rozmiaru).
 const EXTRA_SUBJECT_PRICE = 80;
+// Maksymalna liczba dodatkowych osób/zwierząt na figurce.
+const MAX_SUBJECTS = 6;
 
 const subjectOptions: { id: string; title: string; text: string; icon: IconType; priceLabel: string; imageSide: ImageSide; recommended?: boolean; image?: string }[] = [
   { id: "person", title: "Osoba", text: "Figurka jednej lub więcej osób.", icon: UserRound, priceLabel: `${BASE_PERSON_PRICE} zł za 1. osobę\nkażda kolejna + ${EXTRA_SUBJECT_PRICE} zł`, imageSide: "right", recommended: true, image: osoba1Asset.url },
