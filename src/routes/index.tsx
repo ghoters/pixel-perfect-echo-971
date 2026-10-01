@@ -110,7 +110,7 @@ function Index() {
             <p className="text-xs font-extrabold uppercase text-primary">Personalizowane figurki 3D</p>
             <h1 className="mt-3 max-w-[640px] text-[36px] font-extrabold leading-[1.08] sm:text-[44px] lg:text-[52px]">Stwórz personalizowaną <span className="text-primary">figurkę 3D</span> ze zdjęcia.</h1>
             <p className="mt-5 max-w-[560px] text-[15px] leading-7 text-muted-foreground">Zamień swoje zdjęcie w wyjątkową figurkę 3D. Wybierz rozmiar, liczbę postaci&nbsp; i sposób wykończenia, a my przygotujemy ją na podstawie Twoich zdjęć.</p>
-            <Button variant="hero" size="hero" className="mt-6 w-fit">Stwórz swoją figurkę <ArrowRight /></Button>
+            <Button variant="hero" size="hero" className="mt-6 w-fit" asChild><Link to="/oferta">Stwórz swoją figurkę <ArrowRight /></Link></Button>
           </div>
         </div>
         <div className="relative h-[260px] bg-cover bg-[58%_center] bg-no-repeat sm:h-[310px] lg:hidden" style={{ backgroundImage: `url(${heroBgAsset.url})` }}>
@@ -160,7 +160,7 @@ function Index() {
                   {["Model 3D na podstawie zdjęcia", "Druk 3D i obróbka", "Jeden kolor materiału", "Standardowe opakowanie"].map((item) => <li key={item} className="flex items-center gap-3 text-[11px] font-semibold text-muted-foreground"><Check className="size-4 shrink-0 text-primary" strokeWidth={3} />{item}</li>)}
                 </ul>
               </div>
-              <Button variant="hero" size="sm" className="absolute bottom-7 left-6 z-10 px-6">Wybierz <ArrowRight /></Button>
+              <Button variant="hero" size="sm" className="absolute bottom-7 left-6 z-10 px-6" asChild><Link to="/oferta">Wybierz <ArrowRight /></Link></Button>
             </article>
 
             <article
@@ -180,7 +180,7 @@ function Index() {
                   {["Model 3D na podstawie zdjęcia", "Druk 3D i obróbka", "Ręczne malowanie", "Standardowe opakowanie"].map((item) => <li key={item} className="flex items-center gap-3 text-[11px] font-semibold text-muted-foreground"><Check className="size-4 shrink-0 text-primary" strokeWidth={3} />{item}</li>)}
                 </ul>
               </div>
-              <Button variant="hero" size="sm" className="absolute bottom-7 left-6 z-10 px-6">Wybierz <ArrowRight /></Button>
+              <Button variant="hero" size="sm" className="absolute bottom-7 left-6 z-10 px-6" asChild><Link to="/oferta">Wybierz <ArrowRight /></Link></Button>
             </article>
 
             <aside className="rounded-md bg-brand-soft p-6 md:col-span-2 lg:col-span-1">
@@ -232,7 +232,7 @@ function Index() {
             <h2 className="text-3xl font-extrabold leading-tight text-foreground">Jak to działa?</h2>
             <p className="mt-2 text-base font-bold text-primary">Od zdjęcia do gotowej figurki</p>
             <p className="mt-1 max-w-[240px] text-xs leading-5 text-muted-foreground">To prostsze, niż myślisz. Przesyłasz zdjęcie, a my zajmujemy się resztą.</p>
-            <Button variant="hero" size="default" className="mt-5 w-full max-w-[230px]">Stwórz swoją figurkę <ArrowRight /></Button>
+            <Button variant="hero" size="default" className="mt-5 w-full max-w-[230px]" asChild><Link to="/oferta">Stwórz swoją figurkę <ArrowRight /></Link></Button>
           </div>
           <div className="relative">
             <div className="absolute left-[10%] right-[10%] top-7 hidden h-px bg-primary/20 xl:block" aria-hidden="true" />
@@ -340,7 +340,7 @@ function Index() {
                 <p className="mt-1 text-xs text-muted-foreground">Prześlij zdjęcie i stwórz własną, personalizowaną figurkę.</p>
               </div>
             </div>
-            <Button variant="hero" size="hero" className="shrink-0">Stwórz swoją figurkę <ArrowRight/></Button>
+            <Button variant="hero" size="hero" className="shrink-0" asChild><Link to="/oferta">Stwórz swoją figurkę <ArrowRight/></Link></Button>
           </div>
         </div>
       </section>
