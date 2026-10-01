@@ -1,20 +1,29 @@
-# FAQ — zaktualizowana odpowiedź: „Ile osób może być na jednej figurce?"
+# Przebudowa podstrony /kontakt
 
 ## Cel
-Odpowiedź w FAQ ma odzwierciedlać rzeczywiste działanie konfiguratora: limit 6 osób / 6 zwierząt, a większe lub nietypowe zamówienia wyceniane indywidualnie.
+Dostosowanie podstrony Kontakt: banner na górze jak na FAQ, kontakt e-mail/telefon/FAQ w miejscu trzech „atutów", usunięcie dolnych boksów z FAQ i „Masz inny pomysł?".
 
-## Zmiana
-Plik `src/routes/faq.tsx` (kategoria „Zamówienie", obecna linia 50):
+## Zmiany
 
-- **Pytanie:** bez zmian — „Ile osób może być na jednej figurce?"
-- **Odpowiedź (nowa treść):**
-  „Tak, w konfiguratorze można dodać do 6 osób i 6 zwierząt. Ogólnie na figurce można umieścić sporo osób — przy większych lub indywidualnych zamówieniach wyceniamy je indywidualnie."
+### 1. Nowy banner na górze (jak na /faq)
+- Wygenerować nową grafikę bannerową (1920x704, inna niż na FAQ, pasująca stylistycznie do strony — motyw personalizowanej figurki 3D, kolory brandu) → `src/assets/kontakt-banner.jpg`.
+- Dodać na samej górze podstrony pełno szerokościowy banner o tych samych wymiarach i strukturze co na /faq (`min-h-[270px]` / `sm:min-h-[310px]`, zdjęcie `object-cover` + tekst na tle): napis „KONTAKT", nagłówek „Skontaktuj się z nami" i jedno zdanie opisu — ta sama typografia co na FAQ.
+- Usunąć dotychczasowy nagłówek sekcji hero (przenosi się do banera).
 
-## Bez zmian
-- Pozycja pytania w sekcji, kolejność pozostałych pytań, rozwinięte na starcie pierwsze pytanie — bez zmian.
-- Konfigurator (`oferta.tsx`) i limit 6 osób/zwierząt — bez zmian, zgodnie z wcześniejszym ustaleniem.
-- Brak zmian w nagłówkach, meta i pozostałych sekcjach FAQ.
+### 2. Sekcja z formularzem — zamiast trzech „atutów" dane kontaktowe
+Usunąć trzy kafelki („Szybka odpowiedź", „Indywidualne podejście", „Bezpieczna współpraca") oraz akapit „Masz pytanie, pomysł...". W ich miejscu wstawić trzy pozycje:
+- **E-mail** — prezent3d@gmail.com (link mailto),
+- **Telefon** — +48 123 456 789 (obecny placeholder, bez zmiany, dopóki użytkownik nie poda prawdziwego),
+- **FAQ** — link do /faq („Sprawdź najczęstsze pytania").
+Formularz „Napisz do nas" i zdjęcie po prawej zostają bez zmian.
+
+### 3. Usunięcie dolnej sekcji
+Usunąć całą sekcję z dwoma panelami: accordion „Zanim napiszesz" (Najczęściej zadawane pytania) oraz kartę „Masz inny pomysł?" (wraz ze zdjęciem szkicu).
+Sekcja „Inne sposoby kontaktu" i dolny pasek „Nie znalazłeś odpowiedzi?..." zostają.
+
+### 4. Porządki
+- Usunąć nieużywane dane (quickFaq), importy (Accordion, Zap, Lightbulb, itd.) i `kontakt-szkic.png`, jeśli przestanie być używane.
+- Bez zmian w head()/meta.
 
 ## Weryfikacja
-- Podgląd `/faq`: pytanie rozwija się, nowa odpowiedź widoczna, pierwsze pytanie nadal rozwinięte na starcie.
-- Sprawdzenie `/tmp/observability/build-errors.log` — budowanie bez błędów.
+- Build czysty; podgląd /kontakt: banner jak na FAQ, e-mail/telefon/FAQ pod nagłówkiem sekcji formularza, brak dolnych boksów, klikalne linki (mailto, tel, /faq).
