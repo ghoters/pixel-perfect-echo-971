@@ -47,7 +47,7 @@ const categories: Category[] = [
       { question: "Jak zamówić figurkę 3D?", answer: "Przejdź do konfiguratora, wybierz wariant figurki, rozmiar, wykończenie i dodatki. Następnie prześlij zdjęcia, uzupełnij dane i złóż zamówienie." },
       { question: "Czy mogę zamówić samą figurkę zwierzęcia np. psa/kota?", answer: "Tak. W takim przypadku, przy wyborze kogo ma przedstawiać figurka, zostaw zaznaczoną opcję „Osoba”, a jeśli chcesz dołożyć zwierzaka, dodaj dodatkowo opcję „Zwierzę”." },
       { question: "Jakie zdjęcia są najlepsze do wykonania figurki?", answer: "Najlepsze są ostre, dobrze oświetlone zdjęcia pokazujące twarz, sylwetkę i charakterystyczne detale. Warto przesłać ujęcia z kilku stron." },
-      { question: "Ile osób może być na jednej figurce?", answer: "Tak, w konfiguratorze można dodać do 6 osób i 6 zwierząt. Przy większych lub indywidualnych zamówieniach wyceniamy je indywidualnie." },
+      { question: "Ile osób może być na jednej figurce?", answer: "W konfiguratorze można dodać do 6 osób i 6 zwierząt. Przy większych zamówieniach wyceniamy indywidualnie." },
       { question: "Czy mogę zamówić figurkę z psem lub innym zwierzęciem?", answer: "Tak. W konfiguratorze możesz dodać pupila do figurki. Jeśli potrzebujesz nietypowej kompozycji, skontaktuj się z nami." },
       { question: "Czy mogę wybrać pozę lub ubiór?", answer: "Tak. Opisz oczekiwaną pozę i ubiór w uwagach oraz dołącz zdjęcia referencyjne. Uwzględnimy je podczas przygotowania projektu." },
       { question: "Czy mogę zamówić kilka identycznych figurek?", answer: "Tak. W wiadomości do zamówienia podaj potrzebną liczbę egzemplarzy, a potwierdzimy cenę i termin realizacji." },
