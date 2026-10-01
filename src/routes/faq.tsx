@@ -48,6 +48,7 @@ const categories: Category[] = [
       { question: "Czy mogę zamówić samą figurkę zwierzęcia np. psa/kota?", answer: "Tak. W takim przypadku, przy wyborze kogo ma przedstawiać figurka, zostaw zaznaczoną opcję „Osoba”, a jeśli chcesz dołożyć zwierzaka, dodaj dodatkowo opcję „Zwierzę”." },
       { question: "Jakie zdjęcia są najlepsze do wykonania figurki?", answer: "Najlepsze są ostre, dobrze oświetlone zdjęcia pokazujące twarz, sylwetkę i charakterystyczne detale. Warto przesłać ujęcia z kilku stron." },
       { question: "Ile osób może być na jednej figurce?", answer: "W konfiguratorze można dodać do 6 osób i 6 zwierząt. Przy większych zamówieniach wyceniamy indywidualnie." },
+      { question: "Nie znalazłem opcji w konfiguratorze – co zrobić?", answer: "Skontaktuj się z nami mailowo (prezent3d@gmail.com) lub opisz swój pomysł w uwagach do zamówienia. Przygotujemy dla Ciebie indywidualną wycenę." },
       { question: "Czy mogę zamówić figurkę z psem lub innym zwierzęciem?", answer: "Tak. W konfiguratorze możesz dodać pupila do figurki. Jeśli potrzebujesz nietypowej kompozycji, skontaktuj się z nami." },
       { question: "Czy mogę wybrać pozę lub ubiór?", answer: "Tak. Opisz oczekiwaną pozę i ubiór w uwagach oraz dołącz zdjęcia referencyjne. Uwzględnimy je podczas przygotowania projektu." },
       { question: "Czy mogę zamówić kilka identycznych figurek?", answer: "Tak. W wiadomości do zamówienia podaj potrzebną liczbę egzemplarzy, a potwierdzimy cenę i termin realizacji." },
@@ -122,7 +123,7 @@ function FaqPage() {
       label: "Zamówienie",
       icon: ClipboardList,
       intro: "Dowiedz się, jak złożyć zamówienie i czego potrzebujesz na jego realizację.",
-      items: categories.find((category) => category.id === "order")?.items.slice(0, 5) ?? [],
+      items: categories.find((category) => category.id === "order")?.items.slice(0, 6) ?? [],
     },
     {
       id: "project",
