@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type ComponentType } from "react";
+import type { ComponentType } from "react";
 import {
   ArrowRight,
   Box,
   CircleHelp,
   ClipboardList,
   CreditCard,
-  FileText,
   Headphones,
   Heart,
   PackageCheck,
@@ -116,8 +115,55 @@ function CategoryIcon({ icon: Icon }: { icon: IconType }) {
 }
 
 function FaqPage() {
-  const [selected, setSelected] = useState<FaqCategory | "all">("all");
-  const visibleCategories = selected === "all" ? categories : categories.filter((category) => category.id === selected);
+  const referenceSections = [
+    {
+      id: "order",
+      label: "Zamówienie",
+      icon: ClipboardList,
+      intro: "Dowiedz się, jak złożyć zamówienie i czego potrzebujesz na jego realizację.",
+      items: categories.find((category) => category.id === "order")?.items.slice(0, 5) ?? [],
+    },
+    {
+      id: "project",
+      label: "Projekt figurki",
+      icon: Box,
+      intro: "Poznaj szczegóły dotyczące wyglądu, personalizacji i możliwości projektowych.",
+      items: categories.find((category) => category.id === "project")?.items.slice(0, 4) ?? [],
+    },
+    {
+      id: "production",
+      label: "Realizacja",
+      icon: Sparkles,
+      intro: "Sprawdź, jak wygląda proces tworzenia figurki, od modelu 3D po gotowy produkt.",
+      items: [
+        { question: "Jak długo trwa realizacja?", answer: "Termin zależy od wariantu figurki i liczby poprawek. Dokładny przewidywany czas potwierdzimy po przyjęciu zamówienia." },
+        { question: "Jak wygląda druk 3D i malowanie?", answer: "Po akceptacji projektu drukujemy model z materiału przeznaczonego do precyzyjnego druku 3D. Wariant kolorowy jest następnie ręcznie wykańczany i malowany." },
+        { question: "Czy zobaczę projekt przed wykonaniem?", answer: "Tak. Zawsze otrzymasz cyfrowy podgląd modelu i produkcja rozpocznie się dopiero po Twojej akceptacji." },
+      ],
+    },
+    {
+      id: "delivery",
+      label: "Dostawa i płatność",
+      icon: Truck,
+      intro: "Dowiedz się, jak przebiega płatność, wysyłka i ile to kosztuje.",
+      items: [
+        { question: "Ile kosztuje dostawa?", answer: "Koszt dostawy zobaczysz w podsumowaniu zamówienia przed płatnością." },
+        { question: "Jakie formy płatności są dostępne?", answer: "Dostępne metody płatności zobaczysz na etapie finalizacji zamówienia." },
+        { question: "Jak figurka jest zabezpieczona podczas wysyłki?", answer: "Figurkę starannie zabezpieczamy przed przemieszczaniem i uszkodzeniem podczas transportu." },
+      ],
+    },
+    {
+      id: "account",
+      label: "Konto i zamówienie",
+      icon: UserRound,
+      intro: "Sprawdź status zamówienia i zarządzaj swoim kontem.",
+      items: [
+        { question: "Gdzie mogę sprawdzić status zamówienia?", answer: "Najważniejsze informacje o postępie realizacji przekazujemy na adres podany w zamówieniu." },
+        { question: "Czy mogę sprawdzić historię zamówień?", answer: "Informacje o poprzednich zamówieniach znajdziesz w wiadomościach wysłanych na Twój adres e-mail." },
+        { question: "Jakie dane mogę edytować w swoim koncie?", answer: "Jeśli chcesz zmienić dane kontaktowe dotyczące zamówienia, skontaktuj się z nami jak najszybciej." },
+      ],
+    },
+  ] as const;
 
   return (
     <main className="min-h-screen overflow-x-clip bg-background">
@@ -134,50 +180,48 @@ function FaqPage() {
         </div>
       </section>
 
-      <section className="bg-card py-8 md:py-10">
-        <div className="section-shell grid items-start gap-7 lg:grid-cols-[285px_minmax(0,1fr)] lg:gap-8">
-          <aside className="overflow-x-auto rounded-md border border-border bg-card p-2 lg:sticky lg:top-[84px]" aria-label="Kategorie pytań">
-            <div className="flex min-w-max gap-1 lg:min-w-0 lg:flex-col">
-              <Button type="button" variant="ghost" onClick={() => setSelected("all")} aria-pressed={selected === "all"} className={`h-11 justify-start gap-3 px-3 text-xs shadow-none ${selected === "all" ? "bg-secondary text-primary hover:bg-secondary" : "text-foreground"}`}>
-                <FileText className="size-4" /><span>Wszystkie pytania</span><span className="ml-auto text-[10px] text-muted-foreground">({totalQuestions})</span>
-              </Button>
-              {categories.map(({ id, label, icon: Icon, items }) => (
-                <Button key={id} type="button" variant="ghost" onClick={() => setSelected(id)} aria-pressed={selected === id} className={`h-11 justify-start gap-3 px-3 text-xs shadow-none ${selected === id ? "bg-secondary text-primary hover:bg-secondary" : "text-foreground"}`}>
-                  <Icon className="size-4" /><span>{label}</span><span className="ml-auto text-[10px] text-muted-foreground">({items.length})</span>
-                </Button>
-              ))}
-            </div>
-          </aside>
-
-          <div className="space-y-6">
-            {visibleCategories.map((category) => (
-              <section key={category.id} aria-labelledby={`faq-${category.id}`}>
-                <div className="mb-2.5 flex items-center gap-3">
-                  <CategoryIcon icon={category.icon} />
-                  <div>
-                    <h2 id={`faq-${category.id}`} className="text-sm font-extrabold text-foreground">{category.label}</h2>
-                    <p className="mt-0.5 text-[10px] leading-4 text-muted-foreground">{category.intro}</p>
+      <section className="bg-card py-7 md:py-10">
+        <div className="section-shell">
+          <div>
+            {referenceSections.map((category, sectionIndex) => (
+              <section key={category.id} aria-labelledby={`faq-${category.id}`} className={`grid gap-4 py-6 lg:grid-cols-[310px_minmax(0,1fr)] lg:gap-24 ${sectionIndex > 0 ? "border-t border-border" : "pt-0"}`}>
+                <div className="flex items-start gap-4">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-secondary text-primary"><category.icon className="size-6" strokeWidth={1.8} /></span>
+                  <div className="pt-1">
+                    <h2 id={`faq-${category.id}`} className="text-[15px] font-extrabold text-foreground">{category.label}</h2>
+                    <p className="mt-2 max-w-[230px] text-[10px] leading-[1.65] text-muted-foreground">{category.intro}</p>
                   </div>
                 </div>
-                <Accordion type="single" collapsible className="space-y-1.5">
+                <Accordion type="single" collapsible {...(sectionIndex === 0 ? { defaultValue: "order-0" } : {})} className="space-y-1.5">
                   {category.items.map((item, index) => (
-                    <AccordionItem key={item.question} value={`${category.id}-${index}`} className="overflow-hidden rounded-md border border-border bg-background px-4 transition-colors data-[state=open]:border-primary/30 data-[state=open]:bg-secondary/40">
+                    <AccordionItem key={item.question} value={`${category.id}-${index}`} className="overflow-hidden rounded-md border border-border bg-background px-5 transition-colors data-[state=open]:border-primary/20 data-[state=open]:bg-secondary/40">
                       <AccordionTrigger className="min-h-10 py-2.5 text-[11px] font-bold leading-5 hover:text-primary hover:no-underline">{item.question}</AccordionTrigger>
-                      <AccordionContent className="pr-8 pb-3 text-[11px] leading-5 text-muted-foreground">{item.answer}</AccordionContent>
+                      <AccordionContent className="max-w-[760px] pr-8 pb-4 text-[11px] leading-5 text-muted-foreground">{item.answer}</AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
               </section>
             ))}
-
-            <div className="flex flex-col gap-4 rounded-md bg-banner px-5 py-5 text-primary-foreground sm:flex-row sm:items-center sm:justify-between sm:px-7">
-              <div className="flex items-center gap-4">
-                <span className="grid size-10 shrink-0 place-items-center rounded-full border border-primary-foreground/30"><Headphones className="size-5" /></span>
-                <div><h2 className="text-sm font-extrabold">Nie znalazłeś odpowiedzi na swoje pytanie?</h2><p className="mt-1 text-[10px] text-banner-muted">Skontaktuj się z nami – chętnie pomożemy i rozwiejemy wszelkie wątpliwości.</p></div>
-              </div>
-              <Button variant="hero" asChild className="shrink-0"><a href="mailto:prezent3d@gmail.com">Skontaktuj się z nami <ArrowRight /></a></Button>
-            </div>
           </div>
+
+          <section className="mt-5 grid overflow-hidden rounded-lg bg-secondary/65 lg:grid-cols-2" aria-label="Dalsza pomoc">
+            <div className="flex gap-5 px-6 py-7 sm:px-10">
+              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card text-primary shadow-sm"><Headphones className="size-6" /></span>
+              <div>
+                <h2 className="text-[14px] font-extrabold">Nie znalazłeś odpowiedzi na swoje pytanie?</h2>
+                <p className="mt-2 max-w-[390px] text-[10px] leading-5 text-muted-foreground">Masz nietypowe pytanie dotyczące swojej figurki? Skontaktuj się z nami – chętnie pomożemy i odpowiemy na wszystkie wątpliwości.</p>
+                <Button variant="hero" size="sm" asChild className="mt-4"><a href="mailto:prezent3d@gmail.com">Skontaktuj się z nami <ArrowRight /></a></Button>
+              </div>
+            </div>
+            <div className="flex gap-5 border-t border-primary/20 px-6 py-7 sm:px-10 lg:border-t-0 lg:border-l">
+              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-card text-primary shadow-sm"><Sparkles className="size-6" /></span>
+              <div>
+                <h2 className="text-[14px] font-extrabold">Chcesz stworzyć swoją figurkę?</h2>
+                <p className="mt-2 max-w-[390px] text-[10px] leading-5 text-muted-foreground">Wybierz opcje, które Cię interesują i zobacz, ile może kosztować Twoja wyjątkowa figurka 3D.</p>
+                <Button variant="outline" size="sm" asChild className="mt-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"><a href="/oferta">Stwórz swoją figurkę <ArrowRight /></a></Button>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
