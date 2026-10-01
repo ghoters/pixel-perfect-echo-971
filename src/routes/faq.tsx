@@ -49,7 +49,7 @@ const categories: Category[] = [
       { question: "Ile zdjęć potrzebujecie?", answer: "Wystarczy 1 wyraźne zdjęcie, ale zalecamy przesłanie kilku ujęć. Pozwoli nam to precyzyjnie uchwycić rysy twarzy, sylwetkę\ni charakterystyczne szczegóły." },
       { question: "Ile osób może być na jednej figurce?", answer: "W konfiguratorze można dodać do 6 osób i 6 zwierząt. Przy większych zamówieniach wyceniamy indywidualnie." },
       { question: "Nie znalazłem opcji w konfiguratorze – co zrobić?", answer: "Skontaktuj się z nami mailowo (prezent3d@gmail.com) lub opisz swój pomysł w uwagach do zamówienia." },
-      { question: "Czy mogę dodać coś, czego nie ma w konfiguratorze?", answer: "Tak. W konfiguratorze możesz dodać pupila do figurki. Jeśli potrzebujesz nietypowej kompozycji, skontaktuj się z nami." },
+      { question: "Czy mogę dodać coś, czego nie ma w konfiguratorze?", answer: "Tak. W konfiguratorze możesz skorzystać z opcji „Dodaj własny element” albo opisać nietypowy pomysł w uwagach do zamówienia lub mailowo (prezent3d@gmail.com)." },
       { question: "Czy mogę wybrać pozę lub ubiór?", answer: "Tak. Opisz oczekiwaną pozę i ubiór w uwagach oraz dołącz zdjęcia referencyjne. Uwzględnimy je podczas przygotowania projektu." },
       { question: "Czy mogę zamówić kilka identycznych figurek?", answer: "Tak. W wiadomości do zamówienia podaj potrzebną liczbę egzemplarzy, a potwierdzimy cenę i termin realizacji." },
     ],
