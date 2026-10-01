@@ -129,7 +129,7 @@ function RecommendedBadge({ className }: { className: string }) {
   );
 }
 
-function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Icon, title, text, price, priceLabel, priceViolet, priceCentered, counter, minCount, onIncrement, onDecrement, image, imageSide, imageClassName, imageFull, imageContain, recommended, recommendedTone, textInput, titleNowrap, matchBadgePadding, tightGap }: {
+function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Icon, title, text, price, priceLabel, priceViolet, priceCentered, counter, minCount, maxCount, onIncrement, onDecrement, image, imageSide, imageClassName, imageFull, imageContain, recommended, recommendedTone, textInput, titleNowrap, matchBadgePadding, tightGap }: {
   selected: boolean;
   stepActive: boolean;
   hoverable?: boolean;
@@ -144,6 +144,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
   priceCentered?: boolean;
   counter?: number | undefined;
   minCount?: number | undefined;
+  maxCount?: number | undefined;
   onIncrement?: (() => void) | undefined;
   onDecrement?: (() => void) | undefined;
   image?: string | undefined;
@@ -315,8 +316,9 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
             <button
               type="button"
               aria-label={`Zwiększ liczbę: ${title}`}
+              disabled={counter >= (maxCount ?? Infinity)}
               onClick={(event) => { event.stopPropagation(); onIncrement(); }}
-              className="grid h-full w-8 place-items-center text-primary"
+              className="grid h-full w-8 place-items-center text-primary transition-opacity disabled:opacity-40"
             >
               <Plus className="size-3" />
             </button>
