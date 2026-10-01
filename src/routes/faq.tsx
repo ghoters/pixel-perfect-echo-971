@@ -139,7 +139,7 @@ function FaqPage() {
       icon: Sparkles,
       intro: "Sprawdź, jak wygląda proces tworzenia figurki, od modelu 3D po gotowy produkt.",
       items: [
-        { question: "Jak długo trwa realizacja?", answer: "Termin zależy od wariantu figurki i liczby poprawek. Dokładny przewidywany czas potwierdzimy po przyjęciu zamówienia." },
+        { question: "Jak długo trwa realizacja?", answer: "Termin zależy od wariantu figurki i liczby poprawek. Dokładny przewidywany czas potwierdzimy po przyjęciu zamówienia. Zwykle na realizację potrzebujemy 7 dni." },
         { question: "Jak wygląda druk 3D i malowanie?", answer: "Po akceptacji projektu drukujemy model z materiału przeznaczonego do precyzyjnego druku 3D. Wariant kolorowy jest następnie ręcznie wykańczany i malowany." },
         { question: "Czy zobaczę projekt przed wykonaniem?", answer: "Tak. Zawsze otrzymasz cyfrowy podgląd modelu i produkcja rozpocznie się dopiero po Twojej akceptacji." },
       ],
