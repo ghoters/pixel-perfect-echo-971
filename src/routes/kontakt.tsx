@@ -52,7 +52,7 @@ const inputClass = "w-full rounded-md border border-input bg-background px-3.5 p
 function KontaktPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState(subjects[0]);
+  const [subject, setSubject] = useState(subjects[0] ?? "");
   const [message, setMessage] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
