@@ -56,7 +56,8 @@ function KontaktPage() {
       <SiteHeader active="kontakt" />
 
       <section className="relative min-h-[270px] overflow-hidden bg-brand-soft sm:min-h-[310px]">
-        <img src={kontaktBanner} alt="Figurka 3D obok telefonu i notesu" width={1920} height={700} className="absolute inset-0 size-full object-cover object-[62%_center] sm:object-center" />
+        <img src={kontaktBanner} alt="Figurka 3D obok telefonu i notesu" width={1920} height={704} className="absolute inset-0 size-full object-cover object-[0%_center] sm:object-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/55 to-transparent sm:via-background/30" />
         <div className="section-shell relative z-10 flex min-h-[270px] items-center py-10 sm:min-h-[310px]">
           <div className="max-w-[510px]">
             <p className="text-[11px] font-extrabold uppercase text-primary">Kontakt</p>
