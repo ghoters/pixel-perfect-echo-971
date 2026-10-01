@@ -1,0 +1,175 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import type { FormEvent } from "react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  CircleHelp,
+  Lightbulb,
+  Lock,
+  Mail,
+  MapPin,
+  MessageCircle,
+  MoveDownRight,
+  Phone,
+  Zap,
+} from "lucide-react";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import kontaktHero from "@/assets/kontakt-hero.jpg";
+import kontaktSzkic from "@/assets/kontakt-szkic.png";
+
+export const Route = createFileRoute("/kontakt")({
+  head: () => ({
+    meta: [
+      { title: "Kontakt | prezent3d.com" },
+      { name: "description", content: "Skontaktuj się z nami – odpowiemy na pytania o projekt, wycenę i realizację personalizowanej figurki 3D." },
+      { property: "og:title", content: "Kontakt | prezent3d.com" },
+      { property: "og:description", content: "Masz pytanie lub pomysł na figurkę? Napisz do nas – chętnie pomożemy." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: KontaktPage,
+});
+
+const CONTACT_EMAIL = "prezent3d@gmail.com";
+
+const subjects = ["Pytanie o zamówienie", "Wycena projektu", "Poprawki do projektu", "Współpraca", "Inne"];
+
+const quickFaq = [
+  { question: "Jak długo trwa realizacja zamówienia?", answer: "Termin zależy od wariantu figurki i liczby poprawek. Dokładny przewidywany czas potwierdzimy po przyjęciu zamówienia. Zwykle na realizację potrzebujemy 7 dni." },
+  { question: "Czy mogę wprowadzić zmiany w projekcie?", answer: "Tak. Po otrzymaniu podglądu modelu 3D możesz przekazać uwagi, które omówimy przed ostateczną akceptacją projektu." },
+  { question: "Jak wygląda proces zamówienia?", answer: "Przejdź do konfiguratora, wybierz wariant figurki, rozmiar, wykończenie i dodatki. Następnie prześlij zdjęcia, uzupełnij dane i złóż zamówienie." },
+  { question: "Czy oferujecie faktury?", answer: "Tak. Dokument zakupu przekazujemy zgodnie z danymi podanymi podczas składania zamówienia." },
+  { question: "Jakie pliki graficzne są najlepsze do wykonania figurki?", answer: "Wystarczy 1 wyraźne zdjęcie, ale zalecamy przesłanie kilku ujęć. Pozwoli nam to precyzyjnie uchwycić rysy twarzy, sylwetkę i charakterystyczne szczegóły." },
+];
+
+const inputClass = "w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-[12px] text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
+
+function KontaktPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState(subjects[0]);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const body = `Imię i nazwisko: ${name}\nAdres e-mail: ${email}\n\n${message}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  return (
+    <main className="min-h-screen overflow-x-clip bg-background">
+      <SiteHeader active="kontakt" />
+
+      <section className="overflow-hidden bg-gradient-to-br from-brand-soft via-background to-background">
+        <div className="section-shell grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.75fr)] lg:gap-10 lg:py-16">
+          <div>
+            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Kontakt</p>
+            <h1 className="mt-2 text-[34px] font-extrabold leading-[1.08] text-foreground sm:text-[42px]">Skontaktuj się<br className="hidden sm:block" /> z nami</h1>
+            <p className="mt-4 max-w-[400px] text-[13px] leading-6 text-muted-foreground">Masz pytanie, pomysł na projekt lub chcesz złożyć zamówienie? Napisz do nas – chętnie pomożemy i odpowiemy na wszystkie pytania.</p>
+            <div className="mt-8 grid max-w-[430px] grid-cols-3 gap-5">
+              {([
+                [Zap, "Szybka odpowiedź", "Zazwyczaj w ciągu 24 godzin"],
+                [Lightbulb, "Indywidualne podejście", "Do każdego projektu podchodzimy indywidualnie"],
+                [Lock, "Bezpieczna współpraca", "Twoje dane są u nas w pełni bezpieczne"],
+              ] as const).map(([Icon, title, text]) => (
+                <div key={title}>
+                  <span className="grid size-9 place-items-center rounded-full bg-secondary text-primary"><Icon className="size-4" strokeWidth={2} /></span>
+                  <h2 className="mt-3 text-[11px] font-bold text-foreground">{title}</h2>
+                  <p className="mt-1 text-[9px] leading-4 text-muted-foreground">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <h2 className="text-[16px] font-extrabold text-foreground">Napisz do nas</h2>
+            <form className="mt-5 grid gap-4" onSubmit={handleSubmit}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input required value={name} onChange={(event) => setName(event.target.value)} className={inputClass} placeholder="Imię i nazwisko *" aria-label="Imię i nazwisko" />
+                <input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} className={inputClass} placeholder="Adres e-mail *" aria-label="Adres e-mail" />
+              </div>
+              <select required value={subject} onChange={(event) => setSubject(event.target.value)} className={inputClass} aria-label="Temat wiadomości">
+                {subjects.map((item) => <option key={item} value={item}>{item}</option>)}
+              </select>
+              <textarea required rows={5} value={message} onChange={(event) => setMessage(event.target.value)} className={`${inputClass} resize-none`} placeholder="Wiadomość *" aria-label="Wiadomość" />
+              <Button variant="hero" type="submit" className="w-full">Wyślij wiadomość <ArrowRight /></Button>
+            </form>
+            <p className="mt-4 flex items-center gap-2 text-[9px] text-muted-foreground"><Lock className="size-3.5 shrink-0 text-primary" /> Twoje dane są bezpieczne. Nie udostępniamy ich osobom trzecim.</p>
+          </div>
+
+          <div className="relative hidden lg:block">
+            <img src={kontaktHero} alt="Personalizowana figurka 3D mężczyzny z psem" width={1024} height={1280} className="w-full rounded-xl object-cover" />
+            <p className="absolute -top-2 right-0 rotate-[8deg] text-[12px] font-bold italic text-primary">Twoje zdjęcie →<br />nasza figurka</p>
+            <MoveDownRight className="absolute -top-1 right-24 size-6 rotate-[30deg] text-primary" strokeWidth={2} />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-card py-10 md:py-14">
+        <div className="section-shell">
+          <div className="rounded-xl bg-secondary/50 px-6 py-9 sm:px-12">
+            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Inne sposoby kontaktu</p>
+            <h2 className="mt-2 text-[24px] font-extrabold text-foreground sm:text-[28px]">Skontaktuj się z nami w inny sposób</h2>
+            <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {([
+                [Mail, "E-mail", <a key="mail" href={`mailto:${CONTACT_EMAIL}`} className="text-[13px] font-bold text-primary hover:underline">{CONTACT_EMAIL}</a>, "Odpowiadamy w ciągu 24 godzin."],
+                [Phone, "Telefon", <span key="tel" className="text-[13px] font-bold text-primary">+48 123 456 789</span>, "Pon. – Pt. 9:00 – 17:00"],
+                [MessageCircle, "Chat", <Link key="faq" to="/faq" className="text-[13px] font-bold text-primary hover:underline">Zobacz FAQ</Link>, "Najczęściej zadawane pytania znajdziesz w zakładce FAQ."],
+                [MapPin, "Adres", <span key="adr" className="text-[13px] font-bold text-primary">Obsługa zdalna</span>, "Obsługujemy zamówienia na terenie całej Polski."],
+              ] as const).map(([Icon, label, content, note]) => (
+                <div key={label}>
+                  <span className="grid size-11 place-items-center rounded-full bg-secondary text-primary"><Icon className="size-5" strokeWidth={2} /></span>
+                  <h3 className="mt-4 text-[14px] font-extrabold text-foreground">{label}</h3>
+                  <div className="mt-1.5">{content}</div>
+                  <p className="mt-1.5 text-[10px] leading-5 text-muted-foreground">{note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-10 md:py-14">
+        <div className="section-shell grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div className="rounded-xl border border-border bg-card p-6 sm:p-9">
+            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Najczęściej zadawane pytania</p>
+            <h2 className="mt-2 text-[20px] font-extrabold text-foreground sm:text-[24px]">Zanim napiszesz</h2>
+            <Accordion type="single" collapsible className="mt-6 space-y-1.5">
+              {quickFaq.map((item, index) => (
+                <AccordionItem key={item.question} value={`quick-${index}`} className="overflow-hidden rounded-md border border-border bg-background px-5 transition-colors data-[state=open]:border-primary/20 data-[state=open]:bg-secondary/40">
+                  <AccordionTrigger className="min-h-10 py-2.5 text-[11px] font-bold leading-5 hover:text-primary hover:no-underline">{item.question}</AccordionTrigger>
+                  <AccordionContent className="pr-8 pb-4 text-[11px] leading-5 text-muted-foreground">{item.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <Link to="/faq" className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold text-primary hover:underline">Zobacz wszystkie pytania <ArrowRight className="size-3.5" /></Link>
+          </div>
+
+          <div className="relative grid content-center overflow-hidden rounded-xl bg-secondary/60 px-6 py-9 text-center sm:px-12">
+            <img src={kontaktSzkic} alt="Szkic konceptu figurki" width={1024} height={1024} loading="lazy" className="pointer-events-none absolute -right-10 top-1/2 hidden w-[300px] -translate-y-1/2 opacity-60 md:block" />
+            <div className="relative mx-auto max-w-[380px]">
+              <span className="mx-auto grid size-12 place-items-center rounded-full bg-card text-primary shadow-sm"><MessageCircle className="size-6" /></span>
+              <h2 className="mt-4 text-[20px] font-extrabold text-foreground">Masz inny pomysł?</h2>
+              <p className="mt-3 text-[12px] leading-6 text-muted-foreground">Jeśli masz własny pomysł na figurkę, niestandardowy projekt lub potrzebujesz wyceny – napisz do nas. Chętnie pomożemy w realizacji Twojej wizji.</p>
+              <Button variant="hero" size="sm" asChild className="mt-5"><a href={`mailto:${CONTACT_EMAIL}`}>Skontaktuj się z nami <ArrowRight /></a></Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-card">
+        <div className="section-shell flex flex-wrap items-center justify-center gap-3 py-7">
+          <CircleHelp className="size-5 text-primary" />
+          <p className="text-[11px] font-semibold text-muted-foreground">Nie znalazłeś odpowiedzi? Napisz na <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-primary hover:underline">{CONTACT_EMAIL}</a> – odpowiadamy w ciągu 24 godzin.</p>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
