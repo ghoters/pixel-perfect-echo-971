@@ -102,10 +102,10 @@ function KontaktPage() {
             <p className="mt-4 flex items-center gap-2 text-[9px] text-muted-foreground"><Lock className="size-3.5 shrink-0 text-primary" /> Twoje dane są bezpieczne. Nie udostępniamy ich osobom trzecim.</p>
           </div>
 
-          <div className="relative hidden lg:block">
+          <div className="relative hidden pt-9 lg:block">
             <img src={kontaktHero} alt="Personalizowana figurka 3D mężczyzny z psem" width={1024} height={1280} className="w-full rounded-xl object-cover" />
-            <p className="absolute -top-2 right-0 rotate-[8deg] text-[12px] font-bold italic text-primary">Twoje zdjęcie →<br />nasza figurka</p>
-            <MoveDownRight className="absolute -top-1 right-24 size-6 rotate-[30deg] text-primary" strokeWidth={2} />
+            <p className="absolute right-2 top-0 rotate-[6deg] text-[12px] font-bold italic text-primary">Twoje zdjęcie → nasza figurka</p>
+            <MoveDownRight className="absolute left-6 top-1 size-6 rotate-[40deg] text-primary" strokeWidth={2} />
           </div>
         </div>
       </section>
