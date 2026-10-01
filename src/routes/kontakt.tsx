@@ -5,21 +5,18 @@ import { useState } from "react";
 import {
   ArrowRight,
   CircleHelp,
-  Lightbulb,
   Lock,
   Mail,
   MapPin,
   MessageCircle,
   MoveDownRight,
   Phone,
-  Zap,
 } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import kontaktBanner from "@/assets/kontakt-banner.jpg";
 import kontaktHero from "@/assets/kontakt-hero.jpg";
-import kontaktSzkic from "@/assets/kontakt-szkic.png";
 
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
@@ -36,16 +33,9 @@ export const Route = createFileRoute("/kontakt")({
 });
 
 const CONTACT_EMAIL = "prezent3d@gmail.com";
+const CONTACT_PHONE = "+48 123 456 789";
 
 const subjects = ["Pytanie o zamówienie", "Wycena projektu", "Poprawki do projektu", "Współpraca", "Inne"];
-
-const quickFaq = [
-  { question: "Jak długo trwa realizacja zamówienia?", answer: "Termin zależy od wariantu figurki i liczby poprawek. Dokładny przewidywany czas potwierdzimy po przyjęciu zamówienia. Zwykle na realizację potrzebujemy 7 dni." },
-  { question: "Czy mogę wprowadzić zmiany w projekcie?", answer: "Tak. Po otrzymaniu podglądu modelu 3D możesz przekazać uwagi, które omówimy przed ostateczną akceptacją projektu." },
-  { question: "Jak wygląda proces zamówienia?", answer: "Przejdź do konfiguratora, wybierz wariant figurki, rozmiar, wykończenie i dodatki. Następnie prześlij zdjęcia, uzupełnij dane i złóż zamówienie." },
-  { question: "Czy oferujecie faktury?", answer: "Tak. Dokument zakupu przekazujemy zgodnie z danymi podanymi podczas składania zamówienia." },
-  { question: "Jakie pliki graficzne są najlepsze do wykonania figurki?", answer: "Wystarczy 1 wyraźne zdjęcie, ale zalecamy przesłanie kilku ujęć. Pozwoli nam to precyzyjnie uchwycić rysy twarzy, sylwetkę i charakterystyczne szczegóły." },
-];
 
 const inputClass = "w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-[12px] text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
 
@@ -65,25 +55,33 @@ function KontaktPage() {
     <main className="min-h-screen overflow-x-clip bg-background">
       <SiteHeader active="kontakt" />
 
+      <section className="relative min-h-[270px] overflow-hidden bg-brand-soft sm:min-h-[310px]">
+        <img src={kontaktBanner} alt="Figurka 3D obok telefonu i notesu" width={1920} height={704} className="absolute inset-0 size-full object-cover object-[0%_center] sm:object-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/55 to-transparent sm:via-background/30" />
+        <div className="section-shell relative z-10 flex min-h-[270px] items-center py-10 sm:min-h-[310px]">
+          <div className="max-w-[510px]">
+            <p className="text-[11px] font-extrabold uppercase text-primary">Kontakt</p>
+            <h1 className="mt-2 text-[34px] font-extrabold leading-[1.08] text-foreground sm:text-[42px]">Skontaktuj się<br className="hidden sm:block" /> z nami</h1>
+            <p className="mt-4 max-w-[470px] text-[13px] leading-6 text-muted-foreground">Masz pytanie, pomysł na projekt lub chcesz złożyć zamówienie? Napisz do nas – chętnie pomożemy.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="overflow-hidden bg-gradient-to-br from-brand-soft via-background to-background">
         <div className="section-shell grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.75fr)] lg:gap-10 lg:py-16">
-          <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Kontakt</p>
-            <h1 className="mt-2 text-[34px] font-extrabold leading-[1.08] text-foreground sm:text-[42px]">Skontaktuj się<br className="hidden sm:block" /> z nami</h1>
-            <p className="mt-4 max-w-[400px] text-[13px] leading-6 text-muted-foreground">Masz pytanie, pomysł na projekt lub chcesz złożyć zamówienie? Napisz do nas – chętnie pomożemy i odpowiemy na wszystkie pytania.</p>
-            <div className="mt-8 grid max-w-[430px] grid-cols-3 gap-5">
-              {([
-                [Zap, "Szybka odpowiedź", "Zazwyczaj w ciągu 24 godzin"],
-                [Lightbulb, "Indywidualne podejście", "Do każdego projektu podchodzimy indywidualnie"],
-                [Lock, "Bezpieczna współpraca", "Twoje dane są u nas w pełni bezpieczne"],
-              ] as const).map(([Icon, title, text]) => (
-                <div key={title}>
-                  <span className="grid size-9 place-items-center rounded-full bg-secondary text-primary"><Icon className="size-4" strokeWidth={2} /></span>
-                  <h2 className="mt-3 text-[11px] font-bold text-foreground">{title}</h2>
-                  <p className="mt-1 text-[9px] leading-4 text-muted-foreground">{text}</p>
-                </div>
-              ))}
-            </div>
+          <div className="grid max-w-[430px] grid-cols-3 gap-5">
+            {([
+              [Mail, "E-mail", <a key="mail" href={`mailto:${CONTACT_EMAIL}`} className="text-[11px] font-bold text-primary hover:underline">{CONTACT_EMAIL}</a>, "Odpowiadamy w ciągu 24 godzin"],
+              [Phone, "Telefon", <a key="tel" href={`tel:${CONTACT_PHONE.replace(/\s/g, "")}`} className="text-[11px] font-bold text-primary">{CONTACT_PHONE}</a>, "Pon. – Pt. 9:00 – 17:00"],
+              [CircleHelp, "FAQ", <Link key="faq" to="/faq" className="text-[11px] font-bold text-primary hover:underline">Zobacz FAQ</Link>, "Najczęstsze pytania i odpowiedzi"],
+            ] as const).map(([Icon, title, content, note]) => (
+              <div key={title}>
+                <span className="grid size-9 place-items-center rounded-full bg-secondary text-primary"><Icon className="size-4" strokeWidth={2} /></span>
+                <h2 className="mt-3 text-[11px] font-bold text-foreground">{title}</h2>
+                <div className="mt-1.5">{content}</div>
+                <p className="mt-1 text-[9px] leading-4 text-muted-foreground">{note}</p>
+              </div>
+            ))}
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
@@ -118,7 +116,7 @@ function KontaktPage() {
             <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {([
                 [Mail, "E-mail", <a key="mail" href={`mailto:${CONTACT_EMAIL}`} className="text-[13px] font-bold text-primary hover:underline">{CONTACT_EMAIL}</a>, "Odpowiadamy w ciągu 24 godzin."],
-                [Phone, "Telefon", <span key="tel" className="text-[13px] font-bold text-primary">+48 123 456 789</span>, "Pon. – Pt. 9:00 – 17:00"],
+                [Phone, "Telefon", <a key="tel" href={`tel:${CONTACT_PHONE.replace(/\s/g, "")}`} className="text-[13px] font-bold text-primary">{CONTACT_PHONE}</a>, "Pon. – Pt. 9:00 – 17:00"],
                 [MessageCircle, "Chat", <Link key="faq" to="/faq" className="text-[13px] font-bold text-primary hover:underline">Zobacz FAQ</Link>, "Najczęściej zadawane pytania znajdziesz w zakładce FAQ."],
                 [MapPin, "Adres", <span key="adr" className="text-[13px] font-bold text-primary">Obsługa zdalna</span>, "Obsługujemy zamówienia na terenie całej Polski."],
               ] as const).map(([Icon, label, content, note]) => (
@@ -129,34 +127,6 @@ function KontaktPage() {
                   <p className="mt-1.5 text-[10px] leading-5 text-muted-foreground">{note}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background py-10 md:py-14">
-        <div className="section-shell grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="rounded-xl border border-border bg-card p-6 sm:p-9">
-            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Najczęściej zadawane pytania</p>
-            <h2 className="mt-2 text-[20px] font-extrabold text-foreground sm:text-[24px]">Zanim napiszesz</h2>
-            <Accordion type="single" collapsible className="mt-6 space-y-1.5">
-              {quickFaq.map((item, index) => (
-                <AccordionItem key={item.question} value={`quick-${index}`} className="overflow-hidden rounded-md border border-border bg-background px-5 transition-colors data-[state=open]:border-primary/20 data-[state=open]:bg-secondary/40">
-                  <AccordionTrigger className="min-h-10 py-2.5 text-[11px] font-bold leading-5 hover:text-primary hover:no-underline">{item.question}</AccordionTrigger>
-                  <AccordionContent className="pr-8 pb-4 text-[11px] leading-5 text-muted-foreground">{item.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-            <Link to="/faq" className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold text-primary hover:underline">Zobacz wszystkie pytania <ArrowRight className="size-3.5" /></Link>
-          </div>
-
-          <div className="relative grid content-center overflow-hidden rounded-xl bg-secondary/60 px-6 py-9 text-center sm:px-12">
-            <img src={kontaktSzkic} alt="Szkic konceptu figurki" width={1024} height={1024} loading="lazy" className="pointer-events-none absolute -right-10 top-1/2 hidden w-[300px] -translate-y-1/2 opacity-60 md:block" />
-            <div className="relative mx-auto max-w-[380px]">
-              <span className="mx-auto grid size-12 place-items-center rounded-full bg-card text-primary shadow-sm"><MessageCircle className="size-6" /></span>
-              <h2 className="mt-4 text-[20px] font-extrabold text-foreground">Masz inny pomysł?</h2>
-              <p className="mt-3 text-[12px] leading-6 text-muted-foreground">Jeśli masz własny pomysł na figurkę, niestandardowy projekt lub potrzebujesz wyceny – napisz do nas. Chętnie pomożemy w realizacji Twojej wizji.</p>
-              <Button variant="hero" size="sm" asChild className="mt-5"><a href={`mailto:${CONTACT_EMAIL}`}>Skontaktuj się z nami <ArrowRight /></a></Button>
             </div>
           </div>
         </div>
