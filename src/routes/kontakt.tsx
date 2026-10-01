@@ -99,21 +99,7 @@ function KontaktPage() {
       </section>
 
       <section className="bg-background py-10 md:py-14">
-        <div className="section-shell grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="rounded-xl border border-border bg-card p-6 sm:p-9">
-            <p className="text-[11px] font-extrabold uppercase tracking-wide text-primary">Najczęściej zadawane pytania</p>
-            <h2 className="mt-2 text-[20px] font-extrabold text-foreground sm:text-[24px]">Zanim napiszesz</h2>
-            <Accordion type="single" collapsible className="mt-6 space-y-1.5">
-              {quickFaq.map((item, index) => (
-                <AccordionItem key={item.question} value={`quick-${index}`} className="overflow-hidden rounded-md border border-border bg-background px-5 transition-colors data-[state=open]:border-primary/20 data-[state=open]:bg-secondary/40">
-                  <AccordionTrigger className="min-h-10 py-2.5 text-[11px] font-bold leading-5 hover:text-primary hover:no-underline">{item.question}</AccordionTrigger>
-                  <AccordionContent className="pr-8 pb-4 text-[11px] leading-5 text-muted-foreground">{item.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-            <Link to="/faq" className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold text-primary hover:underline">Zobacz wszystkie pytania <ArrowRight className="size-3.5" /></Link>
-          </div>
-
+        <div className="section-shell grid">
           <div className="relative grid content-center overflow-hidden rounded-xl bg-secondary/60 px-6 py-9 text-center sm:px-12">
             <img src={kontaktSzkic} alt="Szkic konceptu figurki" width={1024} height={1024} loading="lazy" className="pointer-events-none absolute -right-10 top-1/2 hidden w-[300px] -translate-y-1/2 opacity-60 md:block" />
             <div className="relative mx-auto max-w-[380px]">
