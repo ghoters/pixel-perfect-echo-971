@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import {
   ArrowRight,
   Box,
+  CircleHelp,
   ClipboardList,
   CreditCard,
   Headphones,
@@ -191,7 +192,7 @@ function FaqPage() {
                     <p className="mt-2 max-w-[230px] text-[10px] leading-[1.65] text-muted-foreground">{category.intro}</p>
                   </div>
                 </div>
-                <Accordion type="single" collapsible defaultValue={sectionIndex === 0 ? "order-0" : undefined} className="space-y-1.5">
+                <Accordion type="single" collapsible {...(sectionIndex === 0 ? { defaultValue: "order-0" } : {})} className="space-y-1.5">
                   {category.items.map((item, index) => (
                     <AccordionItem key={item.question} value={`${category.id}-${index}`} className="overflow-hidden rounded-md border border-border bg-background px-5 transition-colors data-[state=open]:border-primary/20 data-[state=open]:bg-secondary/40">
                       <AccordionTrigger className="min-h-10 py-2.5 text-[11px] font-bold leading-5 hover:text-primary hover:no-underline">{item.question}</AccordionTrigger>
