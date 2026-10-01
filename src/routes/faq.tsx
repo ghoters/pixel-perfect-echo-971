@@ -50,7 +50,7 @@ const categories: Category[] = [
       { question: "Ile osób może być na jednej figurce?", answer: "W konfiguratorze można dodać do 6 osób i 6 zwierząt. Przy większych zamówieniach wyceniamy indywidualnie." },
       { question: "Nie znalazłem opcji w konfiguratorze – co zrobić?", answer: "Skontaktuj się z nami mailowo (prezent3d@gmail.com) lub opisz swój pomysł w uwagach do zamówienia." },
       { question: "Czy mogę dodać coś, czego nie ma w konfiguratorze?", answer: "Tak. W konfiguratorze możesz skorzystać z opcji „Dodaj własny element” albo opisać nietypowy pomysł w uwagach do zamówienia lub mailowo (prezent3d@gmail.com)." },
-      { question: "Czy mogę zamówić więcej niż jedną figurkę?", answer: "Tak. Liczbę figurek podaj w uwagach do zamówienia lub skontaktuj się z nami mailowo (prezent3d@gmail.com), a potwierdzimy cenę i termin realizacji." },
+      { question: "Czy mogę zamówić więcej niż jedną figurkę?", answer: "Tak. Jeśli chcesz zamówić kilka kopii tego samego projektu (np. jako prezent dla kilku osób) lub zupełnie różne figurki, podaj taką informację w uwagach do zamówienia albo napisz do nas na prezent3d@gmail.com – przygotujemy indywidualną wycenę" },
       { question: "Czy mogę wybrać pozę lub ubiór?", answer: "Tak. Opisz oczekiwaną pozę i ubiór w uwagach oraz dołącz zdjęcia referencyjne. Uwzględnimy je podczas przygotowania projektu." },
       { question: "Czy mogę zamówić kilka identycznych figurek?", answer: "Tak. W wiadomości do zamówienia podaj potrzebną liczbę egzemplarzy, a potwierdzimy cenę i termin realizacji." },
     ],
