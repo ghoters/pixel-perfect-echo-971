@@ -40,8 +40,8 @@ const inputClass = "w-full rounded-md border border-input bg-background px-3.5 p
 
 const contactDetails = [
   { icon: Mail, label: "Email", value: CONTACT_EMAIL, note: "Napisz do nas o dowolnej porze.", href: `mailto:${CONTACT_EMAIL}` },
-  { icon: Phone, label: "Telefon", value: "+48 XXX XXX XXX", note: "Pon. – Pt. 9:00 – 17:00" },
-  { icon: MapPin, label: "Siedziba", value: "Polska", note: "Działamy na terenie całego kraju." },
+  { icon: Phone, label: "Telefon", value: "+48 XXX XXX XXX", note: "Pon. – Pt. 9:00 – 17:00", href: undefined },
+  { icon: MapPin, label: "Siedziba", value: "Polska", note: "Działamy na terenie całego kraju.", href: undefined },
 ] as const;
 
 const quickFaq = [
