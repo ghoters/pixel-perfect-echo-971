@@ -69,6 +69,8 @@ const progressSteps = ["Liczba osób / zwierząt", "Rozmiar", "Wykończenie", "P
 const BASE_PERSON_PRICE = 180;
 // Dopłata za każdą dodatkową osobę/zwierzę (niezależnie od rozmiaru).
 const EXTRA_SUBJECT_PRICE = 80;
+// Maksymalna liczba dodatkowych osób/zwierząt na figurce.
+const MAX_SUBJECTS = 6;
 
 const subjectOptions: { id: string; title: string; text: string; icon: IconType; priceLabel: string; imageSide: ImageSide; recommended?: boolean; image?: string }[] = [
   { id: "person", title: "Osoba", text: "Figurka jednej lub więcej osób.", icon: UserRound, priceLabel: `${BASE_PERSON_PRICE} zł za 1. osobę\nkażda kolejna + ${EXTRA_SUBJECT_PRICE} zł`, imageSide: "right", recommended: true, image: osoba1Asset.url },
@@ -129,7 +131,7 @@ function RecommendedBadge({ className }: { className: string }) {
   );
 }
 
-function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Icon, title, text, price, priceLabel, priceViolet, priceCentered, counter, minCount, onIncrement, onDecrement, image, imageSide, imageClassName, imageFull, imageContain, recommended, recommendedTone, textInput, titleNowrap, matchBadgePadding, tightGap }: {
+function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Icon, title, text, price, priceLabel, priceViolet, priceCentered, counter, minCount, maxCount, onIncrement, onDecrement, image, imageSide, imageClassName, imageFull, imageContain, recommended, recommendedTone, textInput, titleNowrap, matchBadgePadding, tightGap }: {
   selected: boolean;
   stepActive: boolean;
   hoverable?: boolean;
@@ -144,6 +146,7 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
   priceCentered?: boolean;
   counter?: number | undefined;
   minCount?: number | undefined;
+  maxCount?: number | undefined;
   onIncrement?: (() => void) | undefined;
   onDecrement?: (() => void) | undefined;
   image?: string | undefined;
@@ -315,8 +318,9 @@ function ChoiceCard({ selected, stepActive, hoverable, locked, onClick, icon: Ic
             <button
               type="button"
               aria-label={`Zwiększ liczbę: ${title}`}
+              disabled={counter >= (maxCount ?? Infinity)}
               onClick={(event) => { event.stopPropagation(); onIncrement(); }}
-              className="grid h-full w-8 place-items-center text-primary"
+              className="grid h-full w-8 place-items-center text-primary transition-opacity disabled:opacity-40"
             >
               <Plus className="size-3" />
             </button>
@@ -620,7 +624,7 @@ function OfferPage() {
       restoredConfig.current = true;
       const stored = readFigurineConfig();
       if (stored) {
-        setSubjects(stored.subjects); setPersonCount(stored.personCount); setAnimalCount(stored.animalCount);
+        setSubjects(stored.subjects); setPersonCount(Math.min(MAX_SUBJECTS, stored.personCount)); setAnimalCount(Math.min(MAX_SUBJECTS, stored.animalCount));
         setCustomText(stored.customText); setCustomCommitted(stored.customCommitted); setSize(stored.size);
         setFinish(stored.finish); setBase(stored.base); setPack(stored.pack);
         setColor(stored.color); setColorText(stored.colorText); setColorCommitted(stored.colorCommitted);
@@ -719,11 +723,12 @@ function OfferPage() {
                       buttonLabel: "Dodaj własny element",
                     } : undefined}
                     minCount={item.id === "animal" ? 0 : undefined}
+                    maxCount={item.id === "person" || item.id === "animal" ? MAX_SUBJECTS : undefined}
                     onIncrement={
                       item.id === "person"
-                        ? () => { setPersonCount((current) => current + 1); setSubjects((current) => current.includes("person") ? current : [...current, "person"]); }
+                        ? () => { setPersonCount((current) => Math.min(MAX_SUBJECTS, current + 1)); setSubjects((current) => current.includes("person") ? current : [...current, "person"]); }
                         : item.id === "animal"
-                          ? () => { setAnimalCount((current) => current + 1); setSubjects((current) => current.includes("animal") ? current : [...current, "animal"]); }
+                          ? () => { setAnimalCount((current) => Math.min(MAX_SUBJECTS, current + 1)); setSubjects((current) => current.includes("animal") ? current : [...current, "animal"]); }
                           : undefined
                     }
                     onDecrement={
