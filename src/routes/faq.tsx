@@ -124,7 +124,7 @@ function FaqPage() {
       label: "Zamówienie",
       icon: ClipboardList,
       intro: "Dowiedz się, jak złożyć zamówienie i czego potrzebujesz na jego realizację.",
-      items: categories.find((category) => category.id === "order")?.items.slice(0, 6) ?? [],
+      items: categories.find((category) => category.id === "order")?.items.slice(0, 7) ?? [],
     },
     {
       id: "project",
